@@ -1,5 +1,7 @@
 # DSH Free Gateway
 
+**🌐 [English](README.md) | [简体中文](README.zh-CN.md)**
+
 A **zero-dependency Node.js** OpenAI-compatible fallback gateway that aggregates multiple free/cheap LLM providers and transparently fails over between them — with **SSE stream-resume recovery**, per-channel **cooldown**, and **buffered mode**.
 
 Built for the [DeepSeek Harness (DSH)](https://github.com/fendouai/awesome-deepseek-harness) mobile agent platform, but works as a plain OpenAI-compatible endpoint for any client.
