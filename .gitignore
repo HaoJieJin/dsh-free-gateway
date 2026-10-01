@@ -1,0 +1,4 @@
+node_modules/
+*.log
+gateway-secrets.json
+.DS_Store

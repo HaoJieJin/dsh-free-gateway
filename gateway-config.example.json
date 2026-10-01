@@ -1,0 +1,390 @@
+{
+  "port": 8799,
+  "bufferMode": true,
+  "recoverMode": "B",
+  "maxRetries": 3,
+  "retryIntervalMs": 1000,
+  "upstreamTimeoutMs": 300000,
+  "cooldownMs": 60000,
+  "recoverableStatusCodes": [
+    402,
+    403,
+    429,
+    500,
+    502,
+    503,
+    504
+  ],
+  "prompts": {
+    "mode_a": "之前生成到一半连接中断。请忽略你已经看到的不完整输出，根据原始对话上下文，从断点继续生成，不要重复已输出的开头部分。\n已生成内容：\n{{previous_output}}",
+    "mode_b": "之前的回答因网络中断作废。请重新完整回答用户的原始问题，不要提及中断。\n用户问题：\n{{question}}"
+  },
+  "channels": [
+    {
+      "id": "modelscope",
+      "baseUrl": "https://api-inference.modelscope.cn/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "魔搭 日重置 2000次/天 单模型500（每日先用）"
+    },
+    {
+      "id": "ark",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/plan/v3",
+      "apiKey": "YOUR_API_KEY",
+      "note": "火山方舟 Plan 5小时/今日窗口每日重置（可放前面）"
+    },
+    {
+      "id": "sensenova",
+      "baseUrl": "https://token.sensenova.cn/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "商汤 周额度（日额度干了才用）"
+    },
+    {
+      "id": "aly",
+      "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "阿里百炼 一次性免费额度（每个模型1M）"
+    },
+    {
+      "id": "hunyuan",
+      "baseUrl": "https://tokenhub.tencentmaas.com/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "腾讯 TokenHub 一次性免费 100万（已耗尽 HTTP402，留位等恢复）"
+    },
+    {
+      "id": "unisound",
+      "baseUrl": "https://maas-api.unisound.com/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "云知声 U2 Flash 限时免费 09/30-10/31"
+    },
+    {
+      "id": "ourfreemodel",
+      "baseUrl": "http://127.0.0.1:18899/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "Our Free Model 本机转发（OpenCode Zen 免费不限量，需引擎在跑）"
+    },
+    {
+      "id": "bigmodel",
+      "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+      "apiKey": "YOUR_API_KEY",
+      "note": "智谱 GLM 持续免费（免费保底，付费前才用）"
+    },
+    {
+      "id": "xiaomi",
+      "baseUrl": "https://api.xiaomimimo.com/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "小米 MiMo 付费兜底 ¥1/¥2（flash）"
+    },
+    {
+      "id": "deepseek-official",
+      "baseUrl": "https://api.deepseek.com/v1",
+      "apiKey": "YOUR_API_KEY",
+      "note": "DeepSeek 官方 付费最后手段"
+    }
+  ],
+  "modelGroups": {
+    "glm-5.3-flashx": [
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4.1-Flash"
+      },
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4-Flash-0731"
+      },
+      {
+        "channel": "ark",
+        "model": "ark-code-latest"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-flash"
+      },
+      {
+        "channel": "aly",
+        "model": "deepseek-v4.1-flash"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "glm-5.3-flashx"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "mimo-v2.6-flash-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-flash"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "glm-4-flash": [
+      {
+        "channel": "modelscope",
+        "model": "Qwen/Qwen3.8-27B"
+      },
+      {
+        "channel": "ark",
+        "model": "ark-code-latest"
+      },
+      {
+        "channel": "sensenova",
+        "model": "sensenova-6.8-flash-lite"
+      },
+      {
+        "channel": "aly",
+        "model": "qwen3.7-flash-2026-07-15"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "kimi-k2.7-code"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "space-bunny-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-flash"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "deepseek-v4.1-flash": [
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4.1-Flash"
+      },
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4-Flash-0731"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-flash"
+      },
+      {
+        "channel": "aly",
+        "model": "deepseek-v4.1-flash"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "deepseek-v4.1-flash"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "longcat-2.5-preview-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-pro"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-v4-pro"
+      }
+    ],
+    "deepseek-v4-flash": [
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4-Flash-0731"
+      },
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4.1-Flash"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-flash"
+      },
+      {
+        "channel": "aly",
+        "model": "deepseek-v4-flash-0731"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "deepseek-v4-flash-0731"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "longcat-2.5-preview-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-pro"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-v4-pro"
+      }
+    ],
+    "deepseek-v4-pro": [
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4-Pro-0813"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-pro"
+      },
+      {
+        "channel": "aly",
+        "model": "deepseek-v4-pro-0813"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "deepseek-v4-pro-0813"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "nemotron-3-ultra-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-pro"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-v4-pro"
+      }
+    ],
+    "ark-code-latest": [
+      {
+        "channel": "ark",
+        "model": "ark-code-latest"
+      },
+      {
+        "channel": "modelscope",
+        "model": "Qwen/Qwen3.8-27B"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-flash"
+      },
+      {
+        "channel": "aly",
+        "model": "qwen3-coder-next"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "kimi-k2.7-code"
+      },
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "mimo-v2.6-flash-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-flash"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "u2-flash": [
+      {
+        "channel": "unisound",
+        "model": "u2-flash"
+      },
+      {
+        "channel": "modelscope",
+        "model": "deepseek-ai/DeepSeek-V4-Flash-0731"
+      },
+      {
+        "channel": "ark",
+        "model": "ark-code-latest"
+      },
+      {
+        "channel": "sensenova",
+        "model": "deepseek-v4-flash"
+      },
+      {
+        "channel": "aly",
+        "model": "deepseek-v4.1-flash"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "glm-5.3-flashx"
+      },
+      {
+        "channel": "ourfreemodel",
+        "model": "mimo-v2.6-flash-free"
+      },
+      {
+        "channel": "bigmodel",
+        "model": "glm-4-flash-250414"
+      },
+      {
+        "channel": "xiaomi",
+        "model": "mimo-v2.6-flash"
+      },
+      {
+        "channel": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "hy-vision-2.0-instruct": [
+      {
+        "channel": "bigmodel",
+        "model": "glm-4.6v-flash"
+      },
+      {
+        "channel": "hunyuan",
+        "model": "hy-vision-2.0-instruct"
+      }
+    ]
+  }
+}
